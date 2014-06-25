@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)http://getbootstrap.com/examples/cover/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +7,15 @@
 <meta name="author" content="">
 <link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
 
-<title>Cover Template for Bootstrap</title>
+<title>Fishing for IDEAs</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="../bootstrap/css/cover.css" rel="stylesheet">
+<link href="../css/cover.css" rel="stylesheet">
 
-<link href="../bootstrap/css/custom.css" rel = "stylesheet">
-
+<link href="../css/custom.css" rel = "stylesheet">
 <body>
   <div class="site-wrapper">
 
@@ -30,14 +28,14 @@
             <h3 class="masthead-brand">IDEA Databse for Everyday Academia</h3>
             <ul class="nav masthead-nav">
               <li class="active"><a href="home.html">Home</a></li>
-              <li><a href="about.html">About IDEA</a></li>
+              <li><a href="/about">About IDEA</a></li>
             </ul>
           </div>
         </div>
 
         <div class="box">
-          <h1 class="cover-heading">Cover your page.</h1>
-          <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+          <h1 class="cover-heading">IDEA</h1>
+          <p class="lead">Welcome to IDEA! There will be actual content here in the future</p>
           <p class="lead">
             <button class="btn btn-primary btn-lg" id = "show">Login</button>
           </p>
@@ -51,11 +49,22 @@
   <dialog id = "login">
     <p>Choose your preferred login method</p>
     <ul class="nav nav-pills nav-justified">
-      <li><a href = "http://www.google.com" ><image id = "google" src = "../images/google.png"></image></a></li>
-      <li><a href = "nus.com"><image id = "nus" src = "../images/nus.png"></image></a></li>
-      <li><a href = "yahoo.com"><image id = "nus" src = "../images/yahoo.png"></image></a></li>
+      <li>    
+        <form action="/GoogleOpenId" method="post">
+          <input type="image" src = "../images/google.png">
+        </form>
+      </li>
+      <li>    
+        <form action="/NUSOpenId" method="post">
+          <input type="image" src = "../images/nus.png">
+        </form>
+      </li>
+      <li>    
+        <form action="/YahooOpenId" method="post">
+          <input type="image" src = "../images/yahoo.png">
+        </form>
+      </li>
     </ul>
-    <p></p>
     <button class="btn btn-success" id="close">Close</button>
   </dialog>
 </body>
@@ -66,4 +75,4 @@
     <script src="../bootstrap/js/jquery.min.js"></script>
     <script src="../bootstrap/css/bootstrap.min.css"></script>
     <script src="../bootstrap/js/docs.min.js"></script>
-    <script src="../bootstrap/js/custom.js"></script>
+    <script src="../scripts/custom.js"></script>
