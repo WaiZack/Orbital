@@ -1,7 +1,4 @@
-/*
- * Globals
- */
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 /* Links */
 a,
 a:focus,
@@ -28,6 +25,7 @@ html,
 body {
   height: 100%;
   background-image: url(../../images/background.png);
+  font-family: 'Open Sans', sans-serif;
 }
 body {
   color: #fff;
