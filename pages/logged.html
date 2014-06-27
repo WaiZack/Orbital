@@ -5,8 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<meta name="author" content="">
-<link rel="shortcut icon" href="http://getbootstrap.com/assets/ico/favicon.ico">
+<meta name="author" content=""></head>
 
 <title>Fixed Top Navbar Example for Bootstrap</title>
 
@@ -20,26 +19,27 @@
   font-family: 'Open Sans', sans-serif;}</style>
 
 
-<body>
+  <body>
 
-  <div class='cssmenu cssmenu-fixed-top'>
-    <ul>
-     <li class='active'><a href='index.html'><span>Search</span></a></li>
-     <li class="navbar-right mail"><a href="{{logout}}">{{user_mail}}</a></li>
-     <li class='last'><a href='/logged/add'><span>Add</span></a></li>
+    <div class='cssmenu cssmenu-fixed-top'>
+      <ul>
+       <li class='active'><a href='index.html'><span class = "glyphicon glyphicon-search"></span><span> Search</span></a></li>
+       <li class="navbar-right mail"><a href="{{logout}}"><span class ="glyphicon glyphicon-user"></span> {{user_mail}}</a></li>
+       <li><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
+       <li class='last'><a href='/logged/browse'><span class = "glyphicon glyphicon-book"></span><span> Browse</span></a></li>
 
-   </ul>
- </div>
+     </ul>
+   </div>
 
- <div class="container">
+   <div class="container">
 
-  <!-- Main component for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <p align="center">search bar here</p>
-    <p align="center">tags system here</p>
-  </div>
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <p align="center">search bar here</p>
+      <p align="center">tags system here</p>
+    </div>
 
-</div> <!-- /container -->
+  </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript
