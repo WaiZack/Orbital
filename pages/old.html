@@ -25,18 +25,36 @@
           <div class="inner">
             <h3 class="masthead-brand">IDEA Database for Everyday Academia</h3>
             <ul class="nav masthead-nav">
-              <li class="active"><a href = "/"><span class = "glyphicon glyphicon-home"></span>    Home</a></li>
+              <li><a href="/"><span class = "glyphicon glyphicon-home"></span>    Home</a></li>
               <li><a href="/about">About IDEA</a></li>
-              <li><a href="/old">Click here if Login button fails</a></li>
+              <li class = "active"><a href ="/old">Click here if Login button fails</a></li>
             </ul>
           </div>
         </div>
 
         <div class="box">
           <h1 class="cover-heading">IDEA</h1>
-          <p class="lead">Welcome to IDEA! There will be actual content here in the future</p>
+          <p class="lead">Please download the dev channel of chrome</p>
+          <a href = "http://www.chromium.org/getting-involved/dev-channel"><button class="btn btn-primary btn-lg">Download</button></a>
           <p class="lead">
-            <button class="btn btn-primary btn-lg" id = "show">Login</button>
+            Or just log in with the buttons below
+            <ul class="nav nav-pills nav-justified">
+              <li>    
+                <form action="/GoogleOpenId" method="post">
+                  <input type="image" src = "../images/google.png">
+                </form>
+              </li>
+              <li>    
+                <form action="/NUSOpenId" method="post">
+                  <input type="image" src = "../images/nus.png">
+                </form>
+              </li>
+              <li>    
+                <form action="/YahooOpenId" method="post">
+                  <input type="image" src = "../images/yahoo.png">
+                </form>
+              </li>
+            </ul>
           </p>
 
         </div>
@@ -45,32 +63,10 @@
     </div>
 
   </div>
-  <dialog id = "login">
-    <p>Choose your preferred login method</p>
-    <ul class="nav nav-pills nav-justified">
-      <li>    
-        <form action="/GoogleOpenId" method="post">
-          <input type="image" src = "../images/google.png">
-        </form>
-      </li>
-      <li>    
-        <form action="/NUSOpenId" method="post">
-          <input type="image" src = "../images/nus.png">
-        </form>
-      </li>
-      <li>    
-        <form action="/YahooOpenId" method="post">
-          <input type="image" src = "../images/yahoo.png">
-        </form>
-      </li>
-    </ul>
-    <button class="btn btn-success" id="close">Close</button>
-  </dialog>
 </body>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../bootstrap/js/docs.min.js"></script>
-    <script src="../scripts/custom.js"></script>
     </html>

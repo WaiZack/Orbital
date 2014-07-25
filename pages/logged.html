@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <meta name="author" content=""></head>
 
-<title>Fixed Top Navbar Example for Bootstrap</title>
+<title>Fishing for Ideas</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <style>body { padding-top: 0px; }</style>
 <style>.container{padding-top: 100px}</style>
 <style> body {height: 100%;
-  background-image: url(../images/gears.jpg);
+  background-image: url(../images/background.png);
   font-family: 'Open Sans', sans-serif;}</style>
 
 
@@ -23,23 +23,54 @@
 
     <div class='cssmenu cssmenu-fixed-top'>
       <ul>
-       <li class='active'><a href='index.html'><span class = "glyphicon glyphicon-search"></span><span> Search</span></a></li>
+       <li class='active'><a href='logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
        <li class="navbar-right mail"><a href="{{logout}}"><span class ="glyphicon glyphicon-user"></span> {{user_mail}}</a></li>
        <li><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
        <li class='last'><a href='/logged/browse'><span class = "glyphicon glyphicon-book"></span><span> Browse</span></a></li>
 
      </ul>
    </div>
-
    <div class="container">
-
-    <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <p align="center">search bar here</p>
-      <p align="center">tags system here</p>
+      <p><font color = "#c7254e">Hi, here are the ideas that you have submitted thus far!</font></p>
+      <div class = "table-responsive">
+        <table class = "table table-hover">
+          <thead>
+            <tr>
+              <th><span class = "glyphicon glyphicon-eye-open"></span> Problem Name</th>
+              <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
+              <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
+              <th><span class = "glyphicon glyphicon-plus"></span> Additional actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for idea in ideas %}
+            <tr>
+              <td>{{ idea.name }} </td>
+
+              <td>{{ idea.description }} </td>
+
+              <td>{{ idea.requirements }} </td>
+
+              <td>
+                <div class = "btn-group">
+                  <form action="/edit" method="post">
+                    <input class = "btn btn-primary" type = "submit" value ="Edit">
+                  </form>
+                  <form action="/delete" method="post">
+                    <input type="hidden" name="number" value="{{ idea.number }}">
+                    <input class = "btn btn-warning" type = "submit" value ="Delete">
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
 
-  </div> <!-- /container -->
+  </div>
 
 
     <!-- Bootstrap core JavaScript

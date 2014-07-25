@@ -11,7 +11,7 @@ jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__) + "/pages"))
 
 class Authors(ndb.Model):
-    idea_num = ndb.IntegerProperty()
+    next = ndb.IntegerProperty()
 
 class Idea(ndb.Model):
     # Models an idea with name description requirements and author. Key is author
@@ -67,21 +67,14 @@ class Add(webapp2.RequestHandler):
         self.show()
 
     def post(self):
-        parent = ndb.Key('Authors',users.get_current_user().email())
-        author = parent.get()
-        if author == None:
-            author = Authors(id=users.get_current_user().email())
-            author.idea_num = 1
-
-
-        idea = Idea(parent=parent, id=str(author.idea_num))
-        idea.number = author.idea_num
+         = ndb.Key('Ideastore',users.get_current_user().email())
+        idea = Idea(parent=parent)
+        idea.number = author.number
         idea.author = users.get_current_user().email()
         idea.name = self.request.get("name")
         idea.description = self.request.get("description")
         idea.requirements = self.request.get("requirements")
-        author.idea_num +=1
-        author.put()
+        author.number +=1
         idea.put()
         self.show()
 
@@ -127,7 +120,7 @@ class HandleOpenId(webapp2.RequestHandler):
 
 class Delete(webapp2.RequestHandler):
         def post(self):
-            idea = ndb.Key('Authors', users.get_current_user().email(), 'Idea', self.request.get('number'))
+            idea = ndb.Key('Ideastore', users.get_current_user().email())
             idea.delete()
             self.redirect('/logged/main')
 
