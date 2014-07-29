@@ -49,9 +49,9 @@ class LoggedMain(webapp2.RequestHandler):
         template = jinja_environment.get_template('logged.html')
         self.response.out.write(template.render(template_values))
 
-class Old (webapp2.RequestHandler):
+class Login (webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('old.html')
+        template = jinja_environment.get_template('login.html')
         self.response.out.write(template.render())
 
 class Add(webapp2.RequestHandler):
@@ -160,7 +160,7 @@ class Edit2(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/old',Old),
+                               ('/login',Login),
                                ('/GoogleOpenId', GoogleOpenId),
                                ('/NUSOpenId', NUSOpenId),
                                ('/YahooOpenId', YahooOpenId),
