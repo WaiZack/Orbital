@@ -25,9 +25,9 @@
 
     <div class='cssmenu cssmenu-fixed-top'>
      <ul>
-       <li><a href='/logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
+       <li class = "active"><a href='/logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
        <li class="navbar-right mail"><a href="{{logout}}"><span class ="glyphicon glyphicon-user"></span> {{user_mail}}</a></li>
-       <li class = "active"><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
+       <li><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
        <li class='last'><a href='/logged/browse'><span class = "glyphicon glyphicon-book"></span><span> Browse</span></a></li>
 
      </ul>
@@ -37,31 +37,35 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <form class="form-horizontal" action="/logged/add" method = "post">
+      <p><font color = "#c7254e">Please edit your idea below</font></p>
+      {% for idea in ideas %}
+      <form class="form-horizontal" action="/edit2" method = "post">
         <div class="form-group">
           <label class="col-sm-2 control-label">Name <span class = "glyphicon glyphicon-pencil"></span></label>
           <div class="col-sm-5">
-            <input type="text" class="form-control" name="name" placeholder="Name of Problem" required>
+            <input type="text" class="form-control" name="name" placeholder="Name of Problem" value = "{{ idea.name }}"required>
           </div>
         </div>
         <div class="form-group">
           <label for="description" class="col-sm-2 control-label">Description <span class = "glyphicon glyphicon-align-left"></span></label>
           <div class ="col-sm-10">
-            <textarea name = "description" class="form-control" rows="10" required placeholder = "Please describe the problem that you have here"></textarea>
+            <textarea name = "description" class="form-control" rows="10" required placeholder = "Please describe the problem that you have here">{{ idea.description }}</textarea>
           </div>
         </div>
         <div class="form-group">
           <label for="requirements" class="col-sm-2 control-label">Requirements <span class = "glyphicon glyphicon-list"></span></label>
           <div class ="col-sm-10">
-            <textarea name = "requirements" class="form-control" rows="5" placeholder = "Please input any additional requirements here"></textarea>
+            <textarea name = "requirements" class="form-control" rows="5" placeholder = "Please input any additional requirements here">{{ idea.requirements }}</textarea>
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="number" value="{{ idea.number }}">
             <button type="submit" class="btn btn-default" name = "confirm"><span class = "glyphicon glyphicon-cloud-upload"></span> Submit</button>
           </div>
         </div>
       </form>
+      {% endfor %}
     </div>
 
   </div> <!-- /container -->

@@ -131,6 +131,31 @@ class Delete(webapp2.RequestHandler):
             idea.delete()
             self.redirect('/logged/main')
 
+class Edit1(webapp2.RequestHandler):
+    def post(self):
+            idea_key = ndb.Key('Authors', users.get_current_user().email(), 'Idea', self.request.get('number'))
+            ideareal = idea_key.get()
+            idea_query = Idea.query(Idea.author == users.get_current_user().email())
+            idea_query2 = idea_query.filter(Idea.number == ideareal.number)
+            idea = idea_query2.fetch()
+            template_values = {
+                'user_mail': users.get_current_user().email(),
+                'logout': users.create_logout_url(self.request.host_url),
+                'ideas': idea
+            }
+            template = jinja_environment.get_template('edit.html')
+            self.response.out.write(template.render(template_values))
+
+class Edit2(webapp2.RequestHandler):
+    def post(self):
+        idea_key = ndb.Key('Authors', users.get_current_user().email(), 'Idea', self.request.get('number'))
+        idea = idea_key.get()
+        idea.name = self.request.get("name")
+        idea.description = self.request.get("description")
+        idea.requirements = self.request.get("requirements")
+        idea.put()
+        self.redirect('/logged/main')
+
 
 
 
@@ -145,5 +170,7 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/logged/browse', Browse),
                                ('/about', About),
                                ('/delete',Delete),
+                               ('/edit1',Edit1),
+                               ('/edit2',Edit2),
                               ],
                               debug=True)

@@ -12,6 +12,7 @@
 <!-- Bootstrap core CSS -->
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="../css/styles.css" rel="stylesheet">
+<link rel="icon" href="../images/favicon.ico">
 <style>body { padding-top: 0px; }</style>
 <style>.container{padding-top: 100px}</style>
 <style> body {height: 100%;
@@ -54,7 +55,8 @@
 
               <td>
                 <div class = "btn-group">
-                  <form action="/edit" method="post">
+                  <form action="/edit1" method="post">
+                    <input type="hidden" name="number" value="{{ idea.number }}">
                     <input class = "btn btn-primary" type = "submit" value ="Edit">
                   </form>
                   <form action="/delete" method="post">
