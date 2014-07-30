@@ -20,7 +20,16 @@ class Idea(ndb.Model):
     name = ndb.StringProperty()
     description = ndb.TextProperty()
     requirements = ndb.TextProperty()
+    tag = ndb.StringProperty()
+    reply_num = ndb.IntegerProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)
+
+class Reply(ndb.Model):
+    respond = ndb.StringProperty()
+    number = ndb.IntegerProperty()
+    solution = ndb.TextProperty()
+    image = ndb.BlobProperty()
+    author = ndb.StringProperty()
 
 
 class MainPage(webapp2.RequestHandler):
@@ -72,6 +81,7 @@ class Add(webapp2.RequestHandler):
         if author == None:
             author = Authors(id=users.get_current_user().email())
             author.idea_num = 1
+            author.reply_num = 1
 
 
         idea = Idea(parent=parent, id=str(author.idea_num))
@@ -80,6 +90,8 @@ class Add(webapp2.RequestHandler):
         idea.name = self.request.get("name")
         idea.description = self.request.get("description")
         idea.requirements = self.request.get("requirements")
+        idea.tag = self.request.get("tags")
+        idea.reply_num = 0
         author.idea_num +=1
         author.put()
         idea.put()
@@ -153,14 +165,66 @@ class Edit2(webapp2.RequestHandler):
         idea.name = self.request.get("name")
         idea.description = self.request.get("description")
         idea.requirements = self.request.get("requirements")
+        idea.tag = self.request.get("tags")
         idea.put()
         self.redirect('/logged/main')
 
+class Search(webapp2.RequestHandler):
+    def get(self):
+        self.show()
+
+    def show(self):
+        template_values = {
+            'user_mail': users.get_current_user().email(),
+            'logout': users.create_logout_url(self.request.host_url),
+        }
+        template = jinja_environment.get_template('search.html')
+        self.response.out.write(template.render(template_values))
+
+class Result(webapp2.RequestHandler):
+    def post(self):
+        idea_query = Idea.query(Idea.tag == self.request.get('tags'))
+        idea = idea_query.fetch()
+        template_values = {
+                'user_mail': users.get_current_user().email(),
+                'logout': users.create_logout_url(self.request.host_url),
+                'ideas': idea,
+                }
+        if idea_query.count(1):
+            template = jinja_environment.get_template('result.html')
+        else:
+            template = jinja_environment.get_template('no.html')
+        self.response.out.write(template.render(template_values))
+
+
+class DisplayReply(webapp2.RequestHandler):
+    def post(self):
+            idea_key = ndb.Key('Authors', self.request.get('author'), 'Idea', self.request.get('number'))
+            ideareal = idea_key.get()
+            idea_query = Idea.query(Idea.author == ideareal.author)
+            idea_query2 = idea_query.filter(Idea.number == ideareal.number)
+            idea = idea_query2.fetch()
+
+            reply_query = Reply.query(Reply.respond == ideareal.name)
+            reply = reply_query.fetch()
+            template_values = {
+                'user_mail': users.get_current_user().email(),
+                'logout': users.create_logout_url(self.request.host_url),
+                'ideas': idea,
+                'replies': reply
+            }
+            template = jinja_environment.get_template('individual.html')
+            self.response.out.write(template.render(template_values))
+
+class AddReply(webapp2.RequestHandler):
+    def post(self):
+        idea_key = ndb.Key('Authors', self.request.get('author'), 'Idea', self.request.get('number'))
+        ideareal = idea_key.get()
 
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/login',Login),
+                               ('/login', Login),
                                ('/GoogleOpenId', GoogleOpenId),
                                ('/NUSOpenId', NUSOpenId),
                                ('/YahooOpenId', YahooOpenId),
@@ -168,9 +232,13 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/logged/main', LoggedMain),
                                ('/logged/add', Add),
                                ('/logged/browse', Browse),
+                               ('/logged/search', Search),
+                               ('/logged/search2', Result),
                                ('/about', About),
-                               ('/delete',Delete),
-                               ('/edit1',Edit1),
-                               ('/edit2',Edit2),
-                              ],
+                               ('/reply', DisplayReply),
+                               ('/addreply', AddReply),
+                               ('/delete', Delete),
+                               ('/edit1', Edit1),
+                               ('/edit2', Edit2),
+                               ],
                               debug=True)

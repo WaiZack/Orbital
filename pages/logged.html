@@ -17,7 +17,7 @@
 <style>.container{padding-top: 100px}</style>
 <style> body {height: 100%;
   background-image: url(../images/background.png);
-  font-family: 'Open Sans', sans-serif;}</style>
+  font-family: 'Oxygen', sans-serif; font-weight: 700;}</style>
 
 
   <body>
@@ -27,13 +27,14 @@
        <li class='active'><a href='logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
        <li class="navbar-right mail"><a href="{{logout}}"><span class ="glyphicon glyphicon-user"></span> {{user_mail}}</a></li>
        <li><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
+       <li><a href='/logged/search'><span class = "glyphicon glyphicon-search"></span><span> Search</span></a></li>
        <li class='last'><a href='/logged/browse'><span class = "glyphicon glyphicon-book"></span><span> Browse</span></a></li>
 
      </ul>
    </div>
    <div class="container">
     <div class="jumbotron">
-      <p><font color = "#c7254e">Hi, here are the ideas that you have submitted thus far!</font></p>
+      <p><font color = "#c7254e">Your Submitted Ideas</font></p>
       <div class = "table-responsive">
         <table class = "table table-hover">
           <thead>
@@ -41,6 +42,7 @@
               <th><span class = "glyphicon glyphicon-eye-open"></span> Problem Name</th>
               <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
               <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
+              <th><span class = "glyphicon glyphicon-magnet"></span> Tag</th>
               <th><span class = "glyphicon glyphicon-plus"></span> Additional actions</th>
             </tr>
           </thead>
@@ -53,16 +55,22 @@
 
               <td>{{ idea.requirements }} </td>
 
+              <td><font color = #137F28>{{ idea.tag}}</font></td>
+
               <td>
                 <div class = "btn-group">
-                  <form action="/edit1" method="post">
-                    <input type="hidden" name="number" value="{{ idea.number }}">
-                    <input class = "btn btn-primary" type = "submit" value ="Edit">
-                  </form>
-                  <form action="/delete" method="post">
-                    <input type="hidden" name="number" value="{{ idea.number }}">
-                    <input class = "btn btn-warning" type = "submit" value ="Delete">
-                  </form>
+                  <div class = "btn-group">
+                    <form action="/edit1" method="post">
+                      <input type="hidden" name="number" value="{{ idea.number }}">
+                      <button class = "btn btn-primary" type = "submit"><span class = "glyphicon glyphicon-paperclip"></span> Edit</button>
+                    </form>
+                  </div>
+                  <div class = "btn-group">
+                    <form action="/delete" method="post">
+                      <input type="hidden" name="number" value="{{ idea.number }}">
+                      <button class = "btn btn-warning"><span class = "glyphicon glyphicon-trash"></span> Delete</button>
+                    </form>
+                  </div>
                 </div>
               </td>
             </tr>
@@ -73,7 +81,6 @@
     </div>
 
   </div>
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

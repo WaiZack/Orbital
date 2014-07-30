@@ -45,7 +45,7 @@
               <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
               <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
               <th><span class = "glyphicon glyphicon-magnet"></span> Tag</th>
-              <th><span class = "glyphicon glyphicon-calendar"></span> Submitted By</th>
+              <th><span class = "glyphicon glyphicon-calendar"></span> Author and Date</th>
               <th><span class = "glyphicon glyphicon-comment"></span> Replies</th>
             </tr>
           </thead>
@@ -63,15 +63,33 @@
               <td><font color = #c7254e>{{ idea.author }} </font>on <font color = #5480FF>{{ idea.date.strftime('%Y-%m-%d')  }}</font></td>
 
               <td>
-                <form action="/reply" method="post">
+                <form action="/addreply" method="post">
                   <input type="hidden" name="number" value="{{ idea.number }}">
-                  <input type="hidden" name="author" value="{{ idea.author }}">
-                  <button class = "btn btn-info" type = "submit"><span class = "glyphicon glyphicon-comment"></span> View Replies</button>
+                  <button class = "btn btn-primary" type = "submit"><span class = "glyphicon glyphicon-comment"></span> Add a Reply</button>
                 </form>
               </td>
             </tr>
             {% endfor %}
           </tbody>
+        </table>
+      </div>
+    </div>
+
+     <div class="jumbotron">
+      <div class = "table-responsive">
+        <table class = "table table-hover">
+          <thead>
+            <tr>
+              <th><span class = "glyphicon glyphicon-info-sign"></span> Solution Description</th>
+              <th><span class = "glyphicon glyphicon-comment"></span> Solution Image</th>
+            </tr>
+            {% for reply in replies %}
+            <tr>
+              <td>{{reply.solution}}</td>
+              <td>{{reply.image}}</td>
+            </tr>
+            {% endfor %}
+          </thead>
         </table>
       </div>
     </div>
