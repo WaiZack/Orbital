@@ -44,7 +44,7 @@
               <th><span class = "glyphicon glyphicon-eye-open"></span> Problem Name</th>
               <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
               <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
-              <th><span class = "glyphicon glyphicon-magnet"></span> Tag</th>
+              <th><span class = "glyphicon glyphicon-tag"></span> Tag</th>
               <th><span class = "glyphicon glyphicon-calendar"></span> Submitted By</th>
               <th><span class = "glyphicon glyphicon-comment"></span> Replies</th>
             </tr>
@@ -64,8 +64,8 @@
 
               <td>
                 <form action="/reply" method="post">
-                  <input type="hidden" name="number" value="{{ idea.number }}">
-                  <input type="hidden" name="author" value="{{ idea.author }}">
+                  <input type="hidden" name="index" value="{{ idea.number }}">
+                  <input type="hidden" name="submitter" value="{{ idea.author }}">
                   <button class = "btn btn-info" type = "submit"><span class = "glyphicon glyphicon-comment"></span> View Replies</button>
                 </form>
               </td>

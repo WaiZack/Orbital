@@ -10,12 +10,13 @@
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="../css/styles.css" rel="stylesheet">
 <link rel="icon" href="../images/favicon.ico">
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
 <style> body { padding-top: 0px; }</style>
 <style> body {
   height: 100%;
   width: 100%;
   background-image: url(../images/background.png);
-  font-family: 'Open Sans', sans-serif;}</style>
+  font-family: 'Oxygen', sans-serif; font-weight: 700;}}</style>
 
   <style>.container{padding-top: 100px}</style>
 
@@ -43,8 +44,9 @@
               <th><span class = "glyphicon glyphicon-eye-open"></span> Problem Name</th>
               <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
               <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
-              <th><span class = "glyphicon glyphicon-magnet"></span> Tag</th>
-              <th><span class = "glyphicon glyphicon-calendar"></span> Author and Date</th>
+              <th><span class = "glyphicon glyphicon-tag"></span> Tag</th>
+              <th><span class = "glyphicon glyphicon-calendar"></span> Submitted By</th>
+              <th><span class = "glyphicon glyphicon-comment"></span> Replies</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +60,14 @@
 
               <td><font color = #137F28>{{ idea.tag}}</font></td>
 
-              <td>Submitted by: <font color = #c7254e>{{ idea.author }} </font>on <font color = #5480FF>{{ idea.date.strftime('%Y-%m-%d')  }}</font></td>
+              <td><font color = #c7254e>{{ idea.author }} </font>on <font color = #5480FF>{{ idea.date.strftime('%Y-%m-%d')  }}</font></td>
+              <td>
+                <form action="/reply" method="post">
+                  <input type="hidden" name="index" value="{{ idea.number }}">
+                  <input type="hidden" name="submitter" value="{{ idea.author }}">
+                  <button class = "btn btn-info" type = "submit"><span class = "glyphicon glyphicon-comment"></span> View Replies</button>
+                </form>
+              </td>
             </tr>
             {% endfor %}
           </tbody>

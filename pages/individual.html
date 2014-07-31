@@ -44,9 +44,8 @@
               <th><span class = "glyphicon glyphicon-eye-open"></span> Problem Name</th>
               <th><span class = "glyphicon glyphicon-info-sign"></span> Description</th>
               <th><span class ="glyphicon glyphicon-wrench"></span> Additional Requirements</th>
-              <th><span class = "glyphicon glyphicon-magnet"></span> Tag</th>
-              <th><span class = "glyphicon glyphicon-calendar"></span> Author and Date</th>
-              <th><span class = "glyphicon glyphicon-comment"></span> Replies</th>
+              <th><span class = "glyphicon glyphicon-tag"></span> Tag</th>
+              <th><span class = "glyphicon glyphicon-calendar"></span> Submitted By</th>
             </tr>
           </thead>
           <tbody>
@@ -62,12 +61,7 @@
 
               <td><font color = #c7254e>{{ idea.author }} </font>on <font color = #5480FF>{{ idea.date.strftime('%Y-%m-%d')  }}</font></td>
 
-              <td>
-                <form action="/addreply" method="post">
-                  <input type="hidden" name="number" value="{{ idea.number }}">
-                  <button class = "btn btn-primary" type = "submit"><span class = "glyphicon glyphicon-comment"></span> Add a Reply</button>
-                </form>
-              </td>
+              <td><a class = "btn btn-info" href = "#addreply" role = "button"> Add a  Reply</a></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -75,26 +69,64 @@
       </div>
     </div>
 
-     <div class="jumbotron">
+    <div class="jumbotron">
       <div class = "table-responsive">
         <table class = "table table-hover">
           <thead>
             <tr>
               <th><span class = "glyphicon glyphicon-info-sign"></span> Solution Description</th>
               <th><span class = "glyphicon glyphicon-comment"></span> Solution Image</th>
+              <th><span class = "glyphicon glyphicon-calendar"></span> Submitted By</th>
             </tr>
             {% for reply in replies %}
             <tr>
               <td>{{reply.solution}}</td>
-              <td>{{reply.image}}</td>
-            </tr>
-            {% endfor %}
-          </thead>
-        </table>
+              <td>
+                {% if reply.image != "" %}
+                <a href="{{reply.image}}" class="thumbnail" style="width: 200px">
+                  <img src="{{ reply.image}}">
+                </a>
+                {% endif %}
+              </td>
+                <td><font color = #c7254e>{{ reply.author }} </font>on <font color = #5480FF>{{ reply.date.strftime('%Y-%m-%d')  }}</font></td>
+              </tr>
+              {% endfor %}
+            </thead>
+          </table>
+        </div>
       </div>
-    </div>
 
-  </div> <!-- /container -->
+      <a id = "addreply">
+        <div class="jumbotron">
+          <form class="form-horizontal" action="/add_reply" method = "post">
+            <div class="form-group">
+              <label for="solution_description" class="col-sm-2 control-label">Description of Solution <span class = "glyphicon glyphicon-align-left"></span></label>
+              <div class ="col-sm-10">
+                <textarea name = "solution_description" class="form-control" rows="10" required placeholder = "Please describe your solution here"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="photo" class="col-sm-2 control-label">Image URL<span class = "glyphicon glyphicon-picture"></span></label>
+              <div class ="col-sm-10">
+                <input type="url" name="photo" size="75" placeholder = "  Insert image URL here">
+                <span class="help-block">Add an image to illustrate your solution</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                {% for idea in ideas %}
+                <input type="hidden" name="index" value="{{ idea.number }}">
+                <input type="hidden" name="submitter" value="{{ idea.author }}">
+                {% endfor %}
+                <button class = "btn btn-primary" type = "submit"><span class = "glyphicon glyphicon-paperclip"></span> Add Reply</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </a>
+
+    </div> <!-- /container -->
+
 
 
     <!-- Bootstrap core JavaScript

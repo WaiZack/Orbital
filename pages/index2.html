@@ -24,18 +24,37 @@
 
         <div class="masthead clearfix">
           <div class="inner">
-            <h3 class="masthead-brand">IDEA Database for Everyday Academia</h3>
+            <!--<h3 class="masthead-brand">IDEA Database for Everyday Academia</h3>-->
             <ul class="nav masthead-nav">
-              <li class="active"><a href = "/"><span class = "glyphicon glyphicon-home"></span>    Home</a></li>
-              <li><a href="/about">About IDEA</a></li>
-              <li><a href="/login">Login Here!</a></li>
+              <li class="active"><a href = "/"><span class = "glyphicon glyphicon-globe"></span> Home</a></li>
+              <li><a href="/about"><span class = "glyphicon glyphicon-cog"></span> About IDEA</a></li>
             </ul>
           </div>
         </div>
 
         <div class="box">
-          <h1 class="cover-heading">IDEA</h1>
-          <p class="lead">Welcome to IDEA! There will be actual content here in the future</p>
+          <h1 class="cover-heading"><font color = #E8950C>I</font>DEA <font color = #E8950C>D</font>atabase for <font color = #E8950C>E</font>veryday <font color = #E8950C>A</font>cademia</h1>
+          <p class="lead">Welcome to <font color = #E8950C>IDEA</font>!</p>
+           <p class="lead">
+            Please log in with the buttons below
+            <ul class="nav nav-pills nav-justified">
+              <li>    
+                <form action="/GoogleOpenId" method="post">
+                  <input type="image" src = "../images/google.png">
+                </form>
+              </li>
+              <li>    
+                <form action="/NUSOpenId" method="post">
+                  <input type="image" src = "../images/nus.png">
+                </form>
+              </li>
+              <li>    
+                <form action="/YahooOpenId" method="post">
+                  <input type="image" src = "../images/yahoo.png">
+                </form>
+              </li>
+            </ul>
+          </p>
           <!--<p class="lead">
             <button class="btn btn-primary btn-lg" id = "show">Login</button>
           </p>-->

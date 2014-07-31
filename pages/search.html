@@ -7,23 +7,25 @@
 <meta name="description" content="">
 <meta name="author" content=""></head>
 
-<title>Fixed Top Navbar Example for Bootstrap</title>
+<title>Fishing for IDEAs</title>
 
 <!-- Bootstrap core CSS -->
 <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 <link href="../css/styles.css" rel="stylesheet">
+<link rel="icon" href="../images/favicon.ico">
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,700' rel='stylesheet' type='text/css'>
 <style>body { padding-top: 0px; }</style>
 <style>.container{padding-top: 100px}</style>
 <style> body {height: 100%;
   background-image: url(../images/background.png);
-  font-family: 'Open Sans', sans-serif;}</style>
+  font-family: 'Oxygen', sans-serif; font-weight: 700;}}</style>
 
 
   <body>
 
     <div class='cssmenu cssmenu-fixed-top'>
       <ul>
-       <li><a href='logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
+       <li><a href='/logged/main'><span class = "glyphicon glyphicon-home"></span><span> Home</span></a></li>
        <li class="navbar-right mail"><a href="{{logout}}"><span class ="glyphicon glyphicon-user"></span> {{user_mail}}</a></li>
        <li><a href='/logged/add'><span class = "glyphicon glyphicon-plus"></span><span> Add</span></a></li>
        <li class = 'active'><a href='/logged/search'><span class = "glyphicon glyphicon-search"></span><span> Search</span></a></li>
@@ -38,7 +40,7 @@
     <div class="jumbotron">
       <form class="form-horizontal" action="/logged/search2" method = "post">
      <div class="form-group">
-          <label for="tags" class="col-sm-2 control-label">Tags <span class = "glyphicon glyphicon-magnet"></span></label>
+          <label for="tags" class="col-sm-2 control-label">Tags <span class = "glyphicon glyphicon-tag"></span></label>
           <div class ="col-sm-10">
             <div class="alert alert-success" role="alert">Please select a tag to search for</div>
             <select name="tags" size = "5" style="width: 200px" required>
